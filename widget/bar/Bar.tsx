@@ -65,7 +65,7 @@ function Music() {
             />
           </box>
         </button>
-            <button
+            <button className={"musicPlayingButton"}
             onClicked={() => {
               ps[0].play_pause()
             }}

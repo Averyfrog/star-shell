@@ -42,7 +42,9 @@
     };
 
     devShells.${system}.default = pkgs.mkShell {
-        buildInputs = agsPackages;
+        buildInputs = [
+          ags.packages.${system}.agsFull
+        ];
     };
   };
 }

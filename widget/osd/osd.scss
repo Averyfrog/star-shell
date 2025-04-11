@@ -1,0 +1,29 @@
+window.OSD {
+  box.OSD {
+    border-radius: $rounding*2;
+    background-color: $base01;
+    padding: 13px 16px;
+    margin: 13px;
+    box-shadow: 3px 3px 7px 0 rgba(0,0,0,.4);
+  }
+
+  icon {
+    font-size: 16px;
+  }
+
+  label {
+    font-size: 14px;
+  }
+
+  levelbar {
+    background: $accent;
+    trough {
+      margin: 4px;
+    }
+
+    block {
+      min-height: 8px;
+      color: $accent;
+    }
+  }
+}
