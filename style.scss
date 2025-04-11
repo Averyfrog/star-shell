@@ -1,0 +1,142 @@
+@import "colors";
+
+$def-font-size: 14px;
+
+window.Bar {
+  
+  border-radius: $rounding * 2;
+  background-color: $base01;
+  margin-top: 4px;
+
+  button {
+    margin: 4px;
+    border-radius: $rounding * 2;
+    padding: 2px;
+    min-width: 24px;
+    min-height: 24px;
+    background: $base02;
+    &:hover {
+      background: $base04;
+    }
+  }
+
+  .timeIcon, .musicPlayingIcon, .workspace {
+    font-size: $def-font-size + 2px;
+  }
+
+  .musicPlayingIcon {
+    color: $base08;
+  }
+
+  .musicArtist, .musicTitle {
+    padding-bottom: 1px;
+    color: $base08;
+  }
+
+  .musicArtist {
+    padding-left: 2px;
+    opacity: 0.6;
+  }
+
+  .musicDropdown {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .timeIcon {
+    color: $base0E;
+  }
+
+  .timeHours, .timeMins {
+    padding-left: 2px;
+    padding-bottom: 1px;
+    color: $base0E;
+  }
+
+  .timeButton {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+    
+  .ws1 {
+    background: $base02;
+    color: $base08;
+
+    border-radius: $rounding*2 $rounding $rounding $rounding*2;
+    margin-right: 2px;
+    
+    &.focused {
+      background: $base08;
+      color: $base02;
+    }
+  }
+
+  .ws2 {
+    background: $base02;
+    color: $base09;
+    
+    border-radius: $rounding;
+    margin-right: 2px;
+    
+    &.focused {
+      background: $base09;
+      color: $base02;
+    }
+  }
+
+  .ws3 {
+    background: $base02;
+    color: $base0A;
+
+    border-radius: $rounding;
+    margin-right: 2px;
+    
+    &.focused {
+      background: $base0A;
+      color: $base02;
+    }
+  }
+
+  .ws4 {
+    background: $base02;
+    color: $base0B;
+
+    border-radius: $rounding;
+    margin-right: 2px;
+    
+    &.focused {
+      background: $base0B;
+      color: $base02;
+    }
+  }
+
+  .ws5 {
+    background: $base02;
+    color: $base0C;
+
+    border-radius: $rounding;
+    margin-right: 2px;
+    
+    &.focused {
+      background: $base0C;
+      color: $base02;
+    }
+  }
+
+  .ws6 {
+    background: $base02;
+    color: $base0D;
+    
+    border-radius: $rounding $rounding*2 $rounding*2 $rounding;
+    
+    &.focused {
+      background: $base0D;
+      color: $base02;
+    }
+  }
+
+  .focused {
+    min-width: 48px;
+  }
+  
+}
