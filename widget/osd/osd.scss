@@ -17,8 +17,10 @@ window.OSD {
 
   levelbar {
     background: $accent;
+
     trough {
       margin: 4px;
+      color: $accent
     }
 
     block {

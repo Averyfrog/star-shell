@@ -4,6 +4,8 @@ import Hyprland from "gi://AstalHyprland"
 import Mpris from "gi://AstalMpris"
 //import Cava from "gi://AstalCava"
 
+export const musicWidgetOpen = Variable(false)
+
 const iconcss = "font-family: 'Material Symbols Rounded'; font-weight: 700; font-style: normal;"
 
 const workspacesCount = 6;
@@ -47,7 +49,11 @@ function Music() {
   return <box>
     {bind(mpris, "players").as(ps => ps[0] ? (
       <box>
-        <button className={"musicDropdown"}>
+        <button className={"musicDropdown"}
+          onClicked={() => {
+            musicWidgetOpen.set(!musicWidgetOpen.get())
+          }}
+        >
           <box>
             <label className={"musicTitle"}
               label={bind(ps[0], "metadata").as(() =>

@@ -1,0 +1,71 @@
+window {
+    all: unset;
+}
+
+box.MediaPlayer {
+  padding: 8px;
+  margin: 16px;
+  background-color: $base01;
+  box-shadow: 3px 3px 7px 0 rgba(0,0,0,.4);
+  border-radius: $rounding*2;
+
+  box.cover-art {
+    min-width: 120px;
+    min-height: 120px;
+    border-radius: $rounding*2;
+    margin-right: 8px;
+    background-size: contain;
+    background-position: center;
+  }
+
+  box.title {
+    label {
+      font-weight: bold;
+      font-size: 16px;
+    }
+  }
+
+  slider {
+    all: unset;
+    padding: 0;
+    margin: 0;
+
+    trough {
+      min-height: 8px;
+    }
+
+    highlight {
+      background-color: $base08;
+    }
+    
+    slider {
+      all: unset;
+    }
+
+  }
+
+  centerbox.actions {
+    min-width: 220px;
+
+    button {
+      min-width: 16px;
+      min-height: 0;
+      padding: 4px;
+      margin: 0 2px;
+      background-color: $base02;
+    }
+
+  }
+}
+
+.dropdownskipprevious {
+  border-radius: $rounding*2 $rounding $rounding $rounding*2;
+}
+
+.dropdownskipnext {
+  border-radius: $rounding;
+}
+
+.dropdownskipnext {
+  border-radius: $rounding $rounding*2 $rounding*2 $rounding;
+}

@@ -2,6 +2,7 @@ import { App } from "astal/gtk3"
 import style from "./style.scss"
 import Bar from "./widget/bar/Bar"
 import OSD from "./widget/osd/osd"
+import MprisPlayers from "./widget/mediaplayer/mediaplayer"
 
 App.start({
     css: style,
@@ -18,6 +19,7 @@ App.start({
     },
     main() {
         App.get_monitors().map(Bar)
+        App.get_monitors().map(MprisPlayers)
         App.get_monitors().map(OSD)
     },
 })
