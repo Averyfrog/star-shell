@@ -53,6 +53,12 @@ box.MediaPlayer {
       padding: 4px;
       margin: 0 2px;
       background-color: $base02;
+      &:hover {
+        background-color: $base04;
+      }
+      label {
+        color: $accent;
+      }
     }
 
   }
