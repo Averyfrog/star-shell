@@ -44,6 +44,7 @@
     devShells.${system}.default = pkgs.mkShell {
         buildInputs = [
           ags.packages.${system}.agsFull
+          pkgs.material-icons
         ];
     };
   };
