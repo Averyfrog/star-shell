@@ -16,16 +16,16 @@ window.OSD {
   }
 
   levelbar {
+    border-radius: $rounding;
     background: $accent;
 
     trough {
       margin: 4px;
-      color: $accent
+      color: $base02;
     }
 
     block {
       min-height: 8px;
-      color: $accent;
     }
   }
 }

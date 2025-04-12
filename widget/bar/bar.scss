@@ -4,10 +4,6 @@ $def-font-size: 14px;
 
 window.Bar {
   
-  border-radius: $rounding * 2;
-  background-color: $base01;
-  margin-top: 4px;
-
   button {
     margin: 4px;
     border-radius: $rounding * 2;
@@ -18,6 +14,12 @@ window.Bar {
     &:hover {
       background: $base04;
     }
+  }
+
+  centerbox {
+    margin: 8px;
+    background-color: $base01;
+    border-radius: $rounding * 2;
   }
 
   .timeIcon, .musicPlayingIcon, .workspace {
