@@ -38,13 +38,14 @@
       name = "star-shell"; # name of executable
       entry = "app.ts";
       gtk4 = false;
-      extraPackages = agsPackages;
+      extraPackages = agsPackages ++ [
+        pkgs.material-icons
+      ];
     };
 
     devShells.${system}.default = pkgs.mkShell {
         buildInputs = [
           ags.packages.${system}.agsFull
-          pkgs.material-icons
         ];
     };
   };
