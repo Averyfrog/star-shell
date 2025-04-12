@@ -8,9 +8,11 @@
       url = "github:aylur/ags";
     };
 
+    flake-utils.url = "github:numtide/flake-utils";
+
   };
 
-  outputs = { self, nixpkgs, ags }:
+  outputs = { self, nixpkgs, ags, flake-utils }:
 
   let
     system = "x86_64-linux";
@@ -30,6 +32,10 @@
       cava
     ];
 
+    fonts = [
+      pkgs.material-symbols
+    ];
+
   in {
     
     packages.${system}.default = ags.lib.bundle { 
@@ -38,13 +44,12 @@
       name = "star-shell"; # name of executable
       entry = "app.ts";
       gtk4 = false;
-      extraPackages = agsPackages ++ [
-        pkgs.material-icons
-      ];
+      extraPackages = agsPackages ++ fonts;
+
     };
 
     devShells.${system}.default = pkgs.mkShell {
-        buildInputs = [
+        buildInputs = fonts ++ [
           ags.packages.${system}.agsFull
         ];
     };

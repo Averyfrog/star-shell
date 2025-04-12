@@ -20,6 +20,7 @@ window.Bar {
     margin: 8px;
     background-color: $base01;
     border-radius: $rounding * 2;
+    box-shadow: 3px 3px 4px 0 rgba(0,0,0,.4);
   }
 
   .timeIcon, .musicPlayingIcon, .workspace {
