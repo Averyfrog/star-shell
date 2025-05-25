@@ -8,50 +8,50 @@
       url = "github:aylur/ags";
     };
 
-    flake-utils.url = "github:numtide/flake-utils";
+    astal = {
+      url = "github:aylur/astal";
+    };
 
   };
 
-  outputs = { self, nixpkgs, ags, flake-utils }:
+  outputs = { self, nixpkgs, astal, ags }:
 
   let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
     
-    agsPackages = with ags.packages.${system}; [
-      io
-      astal4
-      battery
-      wireplumber
-      network
-      mpris
-      powerprofiles
-      tray
-      bluetooth
-      hyprland
-      cava
-    ];
-
     fonts = [
       pkgs.material-symbols
     ];
 
   in {
-    
-    packages.${system}.default = ags.lib.bundle { 
-      inherit pkgs;
-      src = ./.;
-      name = "star-shell"; # name of executable
-      entry = "app.ts";
-      gtk4 = false;
-      extraPackages = agsPackages ++ fonts;
 
+    packages.${system}. default = pkgs.stdenvNoCC.mkDerivation rec {
+      name = "star-shell";
+      src = ./.;
+
+      nativeBuildInputs = [
+        ags.packages.${system}.agsFull
+        pkgs.wrapGAppsHook
+        pkgs.gobject-introspection
+      ];
+
+      buildInputs = with astal.packages.${system}; [
+        astal3
+        io
+        # any other package
+      ];
+
+      installPhase = ''
+        mkdir -p $out/bin
+        ags bundle app.ts $out/bin/${name}
+      '';
     };
 
     devShells.${system}.default = pkgs.mkShell {
-        buildInputs = fonts ++ [
-          ags.packages.${system}.agsFull
-        ];
+      buildInputs = fonts ++ [
+        ags.packages.${system}.agsFull
+      ];
     };
   };
 }
