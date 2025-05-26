@@ -26,18 +26,24 @@ box.MediaPlayer {
   }
 
   slider {
-    min-width: 50px;
-    padding: 0;
-    margin: 0;
-    background: $base08;
+    min-width: 8px;
+    min-height: 8px;
+    border-radius: $rounding;
+    margin: 4px;
+    background-color: $accent;
 
     trough {
       min-height: 8px;
+      min-width: 8px;
       background-color: $base08;
+      color: $base08;
     }
 
     highlight {
+      min-height: 8px;
+      min-width: 8px;
       background-color: $base08;
+      color: $base08;
     }
 
   }
