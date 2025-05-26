@@ -2,6 +2,8 @@ import { App, Astal, Gtk, Gdk } from "astal/gtk3"
 import { Variable, bind, execAsync } from "astal"
 import Hyprland from "gi://AstalHyprland"
 import Mpris from "gi://AstalMpris"
+import Battery from "gi://AstalBattery"
+import AstalBattery from "gi://AstalBattery?version=0.1"
 //import Cava from "gi://AstalCava"
 
 export const musicWidgetOpen = Variable(false)
@@ -126,6 +128,52 @@ function Record() { // Not finished because i dont understand wf-recorder's file
   </button>
 }
 
+function Battery() {
+  let battery = AstalBattery.get_default()
+
+  if (battery.percentage != 0) {
+    return <button
+      className="batteryButton"
+    >
+      <box>
+        <label
+          label={bind(battery, "charging").as(c => {
+            return c ? "bolt" : ""
+          })}
+          className="batteryIcon"
+          css={iconcss}
+        />
+        <label
+          label={bind(battery, "percentage").as(bp => {
+            switch (Math.round(bp*7)) {
+                case 0: return "Battery_0_bar"
+                case 1: return "Battery_1_bar"
+                case 2: return "Battery_2_bar"
+                case 3: return "Battery_3_bar"
+                case 4: return "Battery_4_bar"
+                case 5: return "Battery_5_bar"
+                case 6: return "Battery_6_bar"
+                case 7: return "Battery_full"
+                default: return "broken"
+              }
+            }
+          )}
+          className="batteryIcon"
+          css={iconcss}
+        />
+        <label
+          className="batteryIcon"
+          label={bind(battery, "percentage").as(bp =>
+          Math.round(bp*100) + "%")}
+        />
+      </box>
+    </button>
+  }
+  else {
+    return <label label="" />
+  }
+}
+
 export default function Bar(gdkmonitor: Gdk.Monitor) {
   const { TOP, LEFT, RIGHT } = Astal.WindowAnchor
 
@@ -147,6 +195,7 @@ export default function Bar(gdkmonitor: Gdk.Monitor) {
       <box   
         halign={Gtk.Align.END}
       >
+        <Battery/>
         <Time/>
       </box>
     </centerbox>

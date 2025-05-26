@@ -1,11 +1,5 @@
 * {
   all: unset;
-  font-weight: 700;
-  transition-timing-function: ease-in;
-  transition-duration: 0.2s;
-  label {
-    transition-duration: 0s;
-  }
 }
 
 @import 'colors';
