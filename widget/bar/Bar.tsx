@@ -137,7 +137,20 @@ function Battery() {
     >
       <box>
         <label
-          label="Battery_Full"
+          label={bind(battery, "percentage").as(bp => {
+            switch (Math.round(bp*7)) {
+                case 0: return battery.charging ? "Battery_charging_20" : "Battery_0_bar"
+                case 1: return battery.charging ? "Battery_charging_20" : "Battery_1_bar"
+                case 2: return battery.charging ? "Battery_charging_30" : "Battery_2_bar"
+                case 3: return battery.charging ? "Battery_charging_50" : "Battery_3_bar"
+                case 4: return battery.charging ? "Battery_charging_60" : "Battery_4_bar"
+                case 5: return battery.charging ? "Battery_charging_80" : "Battery_5_bar"
+                case 6: return battery.charging ? "Battery_charging_90" : "Battery_6_bar"
+                case 7: return battery.charging ? "Battery_charging_full" : "Battery_full"
+                default: return "broken"
+              }
+            }
+          )}
           className="batteryIcon"
           css={iconcss}
         />
