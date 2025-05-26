@@ -131,9 +131,27 @@ function Record() { // Not finished because i dont understand wf-recorder's file
 function Battery() {
   let battery = AstalBattery.get_default()
 
-  return <button>
-    {battery.percentage}
-  </button>
+  if (battery.percentage != null) {
+    return <button
+      className="batteryButton"
+    >
+      <box>
+        <label
+          label="Battery_Full"
+          className="batteryIcon"
+          css={iconcss}
+        />
+        <label
+          className="batteryIcon"
+          label={bind(battery, "percentage").as(bp =>
+          bp*100 + "%")}
+        />
+      </box>
+    </button>
+  }
+  else {
+    return null
+  }
 }
 
 export default function Bar(gdkmonitor: Gdk.Monitor) {
