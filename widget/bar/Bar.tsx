@@ -131,7 +131,7 @@ function Record() { // Not finished because i dont understand wf-recorder's file
 function Battery() {
   let battery = AstalBattery.get_default()
 
-  if (battery.percentage != null) {
+  if (battery.percentage != 0) {
     return <button
       className="batteryButton"
     >
@@ -170,7 +170,7 @@ function Battery() {
     </button>
   }
   else {
-    return null
+    return <label label="" />
   }
 }
 

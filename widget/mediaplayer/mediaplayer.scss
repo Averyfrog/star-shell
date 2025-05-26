@@ -26,20 +26,18 @@ box.MediaPlayer {
   }
 
   slider {
-    all: unset;
+    min-width: 50px;
     padding: 0;
     margin: 0;
+    background: $base08;
 
     trough {
       min-height: 8px;
+      background-color: $base08;
     }
 
     highlight {
       background-color: $base08;
-    }
-    
-    slider {
-      all: unset;
     }
 
   }
@@ -68,7 +66,7 @@ box.MediaPlayer {
   border-radius: $rounding*2 $rounding $rounding $rounding*2;
 }
 
-.dropdownskipnext {
+.dropdownplaybackstatus {
   border-radius: $rounding;
 }
 
