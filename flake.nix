@@ -26,28 +26,21 @@
 
   in {
 
-    packages.${system}. default = pkgs.stdenvNoCC.mkDerivation rec {
+    packages.${system}. default = ags.lib.bundle {
+      inherit pkgs;
+      gtk4 = false;
       name = "star-shell";
       src = ./.;
 
-      nativeBuildInputs = [
+      extraPackages = [
         ags.packages.${system}.agsFull
-        pkgs.wrapGAppsHook
-        pkgs.gobject-introspection
+        astal.packages.${system}.hyprland
+        astal.packages.${system}.mpris
+        astal.packages.${system}.battery
+        astal.packages.${system}.wireplumber
       ];
 
-      buildInputs = with astal.packages.${system}; [
-        astal3
-        io
-        # any other package
-      ];
-
-      installPhase = ''
-        mkdir -p $out/bin
-        ags bundle app.ts $out/bin/${name}
-        chmod +x $out/bin/${name}
-      '';
-    };
+      };
 
     devShells.${system}.default = pkgs.mkShell {
       buildInputs = fonts ++ [
