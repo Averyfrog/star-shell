@@ -26,20 +26,22 @@ box.MediaPlayer {
   }
 
   slider {
-    min-width: 50px;
-    padding: 0;
-    margin: 0;
-    background: $base08;
+    min-height: 4px;
+    border-radius: $rounding;
+    background-color: $accent;
+  }
 
-    trough {
-      min-height: 8px;
-      background-color: $base08;
-    }
+  trough {
+    margin: 8px;
+    min-height: 4px;
+    border-radius: $rounding;
+    background-color: $base02;
+  }
 
-    highlight {
-      background-color: $base08;
-    }
-
+  highlight {
+    min-height: 4px;
+    border-radius: $rounding;
+    background-color: $accent;
   }
 
   centerbox.actions {

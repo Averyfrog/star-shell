@@ -17,7 +17,9 @@ window.OSD {
 
   levelbar {
     border-radius: $rounding;
-    background: $accent;
+    min-width: 8px;
+    min-height: 8px;
+    background-color: $base02;
 
     trough {
       margin: 4px;
@@ -26,6 +28,12 @@ window.OSD {
 
     block {
       min-height: 8px;
+      min-width: 8px;
+      border-radius: $rounding;
+      background-color: $base02;
+      &.filled {
+        background-color: $accent;
+      }
     }
   }
 }
