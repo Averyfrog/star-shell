@@ -40,7 +40,7 @@
         astal.packages.${system}.wireplumber
       ];
 
-      };
+    };
 
     devShells.${system}.default = pkgs.mkShell {
       buildInputs = fonts ++ [
