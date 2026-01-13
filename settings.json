@@ -1,0 +1,23 @@
+{
+  "floating": false,
+  "bar": {
+    "side": 4
+  },
+  "workspaces": {
+    "count": 6,
+    "icons": [
+      "Captive_Portal",
+      "Forum",
+      "Code",
+      "Stadia_Controller",
+      "Category",
+      "Deployed_Code",
+      "Bolt",
+      "crossword",
+      "chess_king"
+    ]
+  },
+  "time":  {
+    "format":"hh:mm"
+  }
+}

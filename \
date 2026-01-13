@@ -1,8 +1,0 @@
-* {
-  all: unset;
-}
-
-@import 'colors';
-@import 'widget/bar/bar';
-@import 'widget/osd/osd';
-@import 'widget/mediaplayer/mediaplayer'
