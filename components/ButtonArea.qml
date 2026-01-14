@@ -8,11 +8,14 @@ MouseArea {
   onEntered: hover.start()
   onExited: unHover.start()
 
+  property color hoverColor: theme.base03
+  property color defColor: theme.base02
+
   ColorAnimation {
     id: hover
     target: parent
     property: "color"
-    to: theme.base03
+    to: hoverColor
     duration: 100
   }
 
@@ -20,7 +23,7 @@ MouseArea {
     id: unHover
     target: parent
     property: "color"
-    to: theme.base02
+    to: defColor
     duration: 100
   }
 }
