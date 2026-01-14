@@ -5,13 +5,19 @@ MouseArea {
   anchors.fill: parent
   hoverEnabled: true
   cursorShape: Qt.PointingHandCursor
-  onEntered: ColorAnimation {
+  onEntered: hover.start()
+  onExited: unHover.start()
+
+  ColorAnimation {
+    id: hover
     target: parent
     property: "color"
     to: theme.base03
     duration: 100
   }
-  onExited: ColorAnimation {
+
+  ColorAnimation {
+    id: unHover
     target: parent
     property: "color"
     to: theme.base02
