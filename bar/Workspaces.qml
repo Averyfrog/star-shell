@@ -5,6 +5,7 @@ import Quickshell.Widgets
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
+import '../components'
 
 Rectangle {
   color: 'transparent'
@@ -23,9 +24,11 @@ Rectangle {
     Repeater {
       model: settings.workspaces.count
 
-      Rectangle {
+      StyledRect {
         width: isActive ? 52 : 28
         height: parent.height - 8
+        
+        anchors.centerIn: null
         anchors.verticalCenter: parent.verticalCenter
         
         property bool isActive: Hyprland.focusedWorkspace?.id === (index + 1)
@@ -43,7 +46,7 @@ Rectangle {
           }
         }
         property var ws: Hyprland.workspaces.values.find(w => w.id === index + 1)
-        //color: isActive ? palette.active.accent : (ws ? palette.active.linkVisited : "#444b6a")
+
         color: isActive ? wsColor : theme.base02
         
         bottomLeftRadius: (index == 0) ? 16 : 8
@@ -51,13 +54,16 @@ Rectangle {
         bottomRightRadius: (index == settings.workspaces.count-1) ? 16 : 8
         topRightRadius: (index == settings.workspaces.count-1) ? 16 : 8
 
-        MouseArea {
+        ButtonArea {
               anchors.fill: parent
               onClicked: Hyprland.dispatch("workspace " + (index + 1))
               cursorShape: Qt.PointingHandCursor
+
+              hoverColor: isActive ? wsColor : theme.base03
+              defColor: isActive ? wsColor : theme.base02
         }
 
-        Text {
+        GoogleIcon {
           anchors.centerIn: parent
           text: {
             return settings.workspaces.icons[index]
@@ -71,13 +77,6 @@ Rectangle {
             }
           }
           color: isActive ? theme.base00 : wsColor
-          font {
-            pixelSize: 14;
-            bold: true
-            family: "Material Symbols Rounded"
-            weight: 700
-            styleName: "Normal"
-          }
         }
       }
     }

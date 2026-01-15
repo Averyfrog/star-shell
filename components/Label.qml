@@ -9,4 +9,5 @@ Text {
   font {
     bold: true
   }
+  //clip: true
 }

@@ -12,7 +12,7 @@ Text {
     styleName: "Normal"
   }
         
-    color: root.iconColor ? root.iconColor : root.textColor
+    color: theme.base05
 
-    text: root.icon
+    text: "add_circle"
   }

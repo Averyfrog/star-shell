@@ -5,6 +5,7 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Effects
 import QtQuick.Shapes
+import '../components'
 
 Rectangle {
   
@@ -22,24 +23,23 @@ Rectangle {
     id: mediaRow
     spacing: 4
     anchors.centerIn: parent
+    height: parent.height
 
-    Rectangle {
+    StyledRect {
       id: song
 
-      height: root.height - 8
-      width: musicRow.width + 16
-      //anchors.centerIn: parent
+      anchors.centerIn: null      
       anchors.verticalCenter: parent.verticalCenter
 
-      color: theme.base02
-      radius: 16
+      width: musicRow.width + 16
+
       topRightRadius: 8
       bottomRightRadius: 8
 
-      MouseArea {
-        anchors.fill: parent
-        onClicked: mediaDropdown.visible = !mediaDropdown.visible
-        cursorShape: Qt.PointingHandCursor
+      ButtonArea {
+        onClicked: { 
+          mediaDropdown.show = !mediaDropdown.show
+        }
       }
 
       Row {
@@ -47,88 +47,56 @@ Rectangle {
         anchors.centerIn: parent
         spacing: 4
 
-        Text {
+        Label {
           width: Math.min(200, implicitWidth)
-          elide: Text.ElideRight
-          anchors.verticalCenter: parent.verticalCenter
           text: activePlayer == null ? "Nothing" : activePlayer.trackTitle
-          font {
-            bold: true
-          }
           color: theme.accent
         }
 
-        Text {
-          anchors.verticalCenter: parent.verticalCenter
-          font {
-            pixelSize: 14;
-            bold: true
-            family: "Material Symbols Rounded"
-            weight: 700
-            styleName: "Normal"
-          }
-
-          elide: Text.ElideRight
+        GoogleIcon {
           color: theme.accent
           text: "music_note"
         }
 
-        Text {
+        Label {
           width: Math.min(160, implicitWidth)
-          elide: Text.ElideRight
-          anchors.verticalCenter: parent.verticalCenter
           color: theme.accent
           opacity: 0.7
           text: activePlayer == null ? "Nobody" : activePlayer.trackArtist
-          font {
-            bold: true
-          }
         }
       }
     }
 
-    Rectangle {
-      height: root.height - 8
+    StyledRect {
       width: height
+
+      anchors.centerIn: null
       anchors.verticalCenter: parent.verticalCenter
 
-      color: theme.base02
-      radius: 16
       topLeftRadius: 8
       bottomLeftRadius: 8
       
-      MouseArea {
-        anchors.fill: parent
+      ButtonArea {
         onClicked: activePlayer.togglePlaying()
-        cursorShape: Qt.PointingHandCursor
       }
 
-      Text {
+      GoogleIcon {
         anchors.centerIn: parent
-        font {
-          pixelSize: 14;
-          bold: true
-          family: "Material Symbols Rounded"
-          weight: 700
-          styleName: "Normal"
-        }
-
-        color: activePlayer == null ? theme.base01 : theme.accent
         text: activePlayer != null && activePlayer.isPlaying ? "pause" : "play_arrow"
+        color: activePlayer == null ? theme.base01 : theme.accent
       }
     }
   }
 
-  PopupWindow {
+  Dropdown {
     id: mediaDropdown
-    anchor {
-      item: root
-      rect.x: root.width/2 - width/2
-      rect.y: settings.bar.side == 1 ? (settings.floating ? 52 : 33) : (settings.floating ? -216 : -194)
-    }
+    anchor.item: root
     implicitWidth: 600
     implicitHeight: 200
     color: 'transparent'
+    
+    property bool show: false
+    visible: true
 
     //RectangularShadow {
     //  anchors.fill: dropdown
@@ -136,11 +104,19 @@ Rectangle {
     //  radius: dropdown.radius
     //}
 
-    Rectangle {
+    StyledRect {
       id: dropdown
-      anchors.centerIn: parent
-      width: parent.width - 20
-      height: parent.height - 10
+      anchors.centerIn: null
+      implicitWidth: parent.width - 32
+      height: parent.height
+      x: 12
+      y: mediaDropdown.show ? 0 : (settings.bar.side == 1 ? -height : height)
+      Behavior on y {
+        NumberAnimation {
+          duration: 250
+          easing.bezierCurve: settings.floating ? [0.38, 1.21, 0.22, 1, 1, 1] : [0.38, 1.0, 0.22, 1, 1, 1]
+        }
+      }
       color: theme.base00
       radius: 16
 
@@ -149,11 +125,10 @@ Rectangle {
       bottomLeftRadius: !settings.floating ? (settings.bar.side != 4 ? radius : 0) : radius
       bottomRightRadius: !settings.floating ? (settings.bar.side != 4 ? radius : 0) : radius
 
-      Rectangle {
+      StyledRect {
         width: parent.width - 16
         height: parent.height - 16
         color: theme.base01
-        anchors.centerIn: parent
         radius: 8
 
         RowLayout {
@@ -169,18 +144,10 @@ Rectangle {
             color: theme.base02
             radius: 8
 
-            Text {
-              anchors.centerIn: parent
-              font {
-                pixelSize: 120;
-                bold: true
-                family: "Material Symbols Rounded"
-                weight: 700
-                styleName: "Normal"
-              }
-
-              color: theme.base00
+            GoogleIcon {
               text: "art_track"
+              color: theme.base00
+              font { pixelSize: 120 }
             }
             
             Image {
@@ -189,7 +156,10 @@ Rectangle {
               height: parent.height - 8
               anchors.centerIn: parent
               source: activePlayer.trackArtUrl
+              fillMode: Image.PreserveAspectFit
             }
+
+            ButtonArea {}
           }
 
           Rectangle {
@@ -220,31 +190,17 @@ Rectangle {
 
                     Row {
                       anchors.left: parent.left
+                      width: parent.width
                       spacing: 8
-                      Text {
-                        anchors.verticalCenter: parent.verticalCenter
-                        font {
-                          pixelSize: 16;
-                          bold: true
-                          family: "Material Symbols Rounded"
-                          weight: 700
-                          styleName: "Normal"
-                        }
-
-                        color: theme.accent
+                      GoogleIcon {
                         text: "Music_Note"
-                      }
-                      Text {
-                        width: Math.min(parent.width - 32, implicitWidth)
-                        elide: Text.ElideRight
-                        anchors.verticalCenter: parent.verticalCenter
                         color: theme.accent
-                        opacity: 1
+                      }
+                      Label {
+                        width: Math.min(parent.width - 32, implicitWidth)
                         text: activePlayer == null ? "Nothing" : activePlayer.trackTitle
-                        font {
-                          pixelSize: 14
-                          bold: true
-                        }
+                        color: theme.accent
+                        font { pixelSize: 14 }
                       }
                     }
                   }
@@ -256,18 +212,9 @@ Rectangle {
                     
                     Row {
                       anchors.left: parent.left
-                      Text {
-                        anchors.verticalCenter: parent.verticalCenter
-                        font {
-                          pixelSize: 14;
-                          bold: true
-                          family: "Material Symbols Rounded"
-                          weight: 700
-                          styleName: "Normal"
-                        }
-
+                      GoogleIcon {
+                        text: "---------------------------------------"
                         color: theme.base01
-                        text: "--------------------------------------------"
                       }
                     }
                   }
@@ -280,59 +227,34 @@ Rectangle {
                     Row {
                       width: parent.width
                       spacing: 4
-                      Text {
-                        anchors.verticalCenter: parent.verticalCenter
-                        font {
-                          pixelSize: 15;
-                          bold: true
-                          family: "Material Symbols Rounded"
-                          weight: 700
-                          styleName: "Normal"
-                        }
-
-                        color: theme.base05
+                      GoogleIcon {
                         text: "artist"
-                      }
-                      Text {
-                        id: trackArtist
-                        width: Math.min(parent.width/2 - 32, implicitWidth)
-                        elide: Text.ElideRight
                         color: theme.base05
+                      }
+                      Label {
+                          id: trackArtist
+                        width: Math.min(parent.width/2 - 32, implicitWidth)
                         opacity: 0.9
                         text: activePlayer == null ? "Nobody" : activePlayer.trackArtist
-                        font {
-                          pixelSize: 12
-                          bold: true
-                        }
+                        color: theme.base05
+                        font { pixelSize: 12 }
                       }
-                      Text {
-                        anchors.verticalCenter: parent.verticalCenter
+                      GoogleIcon {
                         opacity: 0.7
-                        font {
-                          pixelSize: 10
-                          bold: true
-                          family: "Material Symbols Rounded"
-                          weight: 700
-                          styleName: "Normal"
-                        }
-
-                        color: theme.base05
                         text: "album"
-                      }
-                      Text {
-                        width: Math.min(parent.width - trackArtist.width - 48, implicitWidth)
-                        elide: Text.ElideRight
                         color: theme.base05
+                      }
+                      Label {
+                        width: Math.min(parent.width - trackArtist.width - 48, implicitWidth)
                         opacity: 0.6
                         text: activePlayer == null ? "Nowhere" : activePlayer.trackAlbum
-                        font {
-                          pixelSize: 12
-                          bold: true
-                        }
+                        color: theme.base05
+                        font { pixelSize: 12 }
                       }
                     }
                   }
                 }
+                ButtonArea {}
               }
 
               Rectangle {

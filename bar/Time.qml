@@ -2,6 +2,7 @@ import Quickshell
 import Quickshell.Widgets
 import QtQuick
 import QtQuick.Layouts
+import '../components'
 
 Rectangle {
   
@@ -12,40 +13,20 @@ Rectangle {
   Layout.fillHeight: true
   width: 76
 
-  Rectangle {
-    color: theme.base02
-
-    height: parent.height - 8
-    width: parent.width - 8
-    anchors.centerIn: parent
-    radius: 16
-
+  StyledRect {
+    
     Row {
       id: clockRow
       anchors.centerIn: parent
       spacing: 2
 
-      Text {
-        anchors.verticalCenter: parent.verticalCenter
-        font {
-          pixelSize: 16;
-          bold: true
-          family: "Material Symbols Rounded"
-          weight: 700
-          styleName: "Normal"
-        }
-        color: theme.base0E
-
+      GoogleIcon {
         text: "Schedule"
+        color: theme.base0E
       }
-
-      Text {
-        anchors.verticalCenter: parent.verticalCenter
+      Label {
         color: theme.base0E
         text: Qt.formatDateTime(clock.date, settings.time.format)
-        font {
-          bold: true
-        }
       }
     }
   }

@@ -5,13 +5,31 @@ import QtQuick
 import QtQuick.Layouts
 import "../components"
 
-
-BarIconInfo {
+Rectangle {
   id: root
-  icon: "Thermostat"
-  info: tempMonitor.info/1000 + "°"
-  textColor: theme.base09
-  implicitWidth: 72
+
+  color: 'transparent'
+  implicitWidth: button.implicitWidth
+  Layout.fillHeight: true
+
+  
+  StyledRect {
+    id: button
+    implicitWidth: 72
+
+    Row {
+      spacing: 4
+      anchors.centerIn: parent  
+      GoogleIcon {
+        text: "Thermostat"
+        color: theme.base09
+      }
+      Label {
+        text: tempMonitor.info/1000 + "°"
+        color: theme.base09
+      }
+    }
+  }
 
   Process {
     id: tempMonitor

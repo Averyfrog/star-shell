@@ -9,8 +9,15 @@ Rectangle {
     id: button
     color: theme.base02
 
-    height: parent.height - 8
-    width: parent.width - 8
+    property int edgeGap: 8
+
+    height: parent.height - edgeGap
+    width: parent.width - edgeGap
+    Behavior on width {
+      NumberAnimation {
+        duration: 100
+      }
+    }
     anchors.centerIn: parent
     radius: 16
 }

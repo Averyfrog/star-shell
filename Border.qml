@@ -12,7 +12,7 @@ Variants {
     
     // My FNQRT Border Shape
     property color barsColor: theme.base00
-    property real borderWidth: 16//18//16 
+    property real borderWidth: 16
     property real cornerRadius: 20
     
     PanelWindow {

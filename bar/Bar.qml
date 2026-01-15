@@ -104,6 +104,7 @@ Scope {
 
               SysMonitor {}
               Battery {}
+              Dashboard {}
             }
           }
         }
