@@ -27,7 +27,7 @@ ShellRoot {
     }
     blockLoading: true
   }
-  
+
   readonly property var theme: JSON.parse(themeFile.text()) 
   readonly property var settings: JSON.parse(settingsFile.text()) 
 

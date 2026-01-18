@@ -6,6 +6,7 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
 import QtQuick.Effects
+import '../components'
 
 Scope {
   property string time
@@ -38,13 +39,13 @@ Scope {
         anchors.centerIn: parent
 
         RectangularShadow {
-          anchors.fill: rect
+          anchors.fill: bar
           blur: 10
-          radius: rect.radius
+          radius: bar.radius
         }
         
         Rectangle {
-          id: rect
+          id: bar
 
           anchors.fill: parent
 
@@ -66,7 +67,7 @@ Scope {
               height: parent.height
 
               Time {}
-              Media {}
+              Workspaces {}
             }
           }
 
@@ -84,7 +85,8 @@ Scope {
               spacing: 2
               height: parent.height
 
-              Workspaces {}
+              Media {}
+              //ThemeButton {}
             }
           }
 
@@ -104,9 +106,22 @@ Scope {
 
               SysMonitor {}
               Battery {}
-              Dashboard {}
+              //Dashboard {}
             }
           }
+          /*
+          Dropdown {
+            id: popup
+            visible: true
+            anchor.item: bar
+            color: 'transparent'
+            implicitWidth: 200
+            
+            DropdownRect { 
+              //MediaDropdown {} 
+            }
+          }
+          */
         }
       }
       //Text {

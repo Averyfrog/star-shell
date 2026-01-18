@@ -54,43 +54,25 @@ text: settings.battery.showPercentage ?(UPower.displayDevice.percentage * 100).t
     }
     
     ButtonArea {
-      onClicked: dropdown.show = !dropdown.show
+      onClicked: popup.visible = !popup.visible
     }
   }
 
   Dropdown {
-    id: dropdown
+    id: popup
     anchor.item: root
-    property bool show: false
 
-    visible: true
-    StyledRect {
-      anchors.centerIn: null
-      x: 12
-      y: dropdown.show ? 0 : (settings.bar.side == 1 ? -height : height)
-      Behavior on y {
-        NumberAnimation {
-          duration: 250
-          easing.bezierCurve: settings.floating ? [0.38, 1.21, 0.22, 1, 1, 1] : [0.38, 1.0, 0.22, 1, 1, 1]
-        }
-      }
-      width: dropdown.width - 24
-      height: dropdown.height
-      color: theme.base00
-
-      topLeftRadius: !settings.floating ? (settings.bar.side != 1 ? radius : 0) : radius
-      topRightRadius: !settings.floating ? (settings.bar.side != 1 ? radius : 0) : radius
-      bottomLeftRadius: !settings.floating ? (settings.bar.side != 4 ? radius : 0) : radius
-      bottomRightRadius: !settings.floating ? (settings.bar.side != 4 ? radius : 0) : radius
+    DropdownRect {
 
       StyledRect {
         color: theme.base01
         edgeGap: 16
       
         ColumnLayout {
-          anchors.centerIn: parent
+          anchors.top: parent.top
+          anchors.topMargin: 8
           width: parent.width
-          height: parent.height - 16
+          //height: parent.height - 16
           
 
           Repeater {
@@ -103,6 +85,7 @@ text: settings.battery.showPercentage ?(UPower.displayDevice.percentage * 100).t
               height: 48
               Layout.alignment: Qt.AlignHCenter
               RowLayout {
+                spacing: 4
                 anchors.centerIn: parent
                 width: parent.width-8
                 height: parent.height-8
@@ -111,7 +94,9 @@ text: settings.battery.showPercentage ?(UPower.displayDevice.percentage * 100).t
                   anchors.centerIn: null
                   width: parent.width/1.5
                   Label {
-                    text: modelData.name
+                    width: parent.width
+                    text: modelData.name + ":"
+                    font.pixelSize: 12
                   }
                 }
                 StyledRect {
@@ -119,7 +104,8 @@ text: settings.battery.showPercentage ?(UPower.displayDevice.percentage * 100).t
                   anchors.centerIn: null
                   height: 32
                   Label {
-                    text: modelData.battery
+                    text: (modelData.battery * 100).toFixed(0) + "%"
+                    color: theme.base0C
                   }
                 }
               }

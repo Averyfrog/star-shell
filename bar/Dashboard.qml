@@ -23,6 +23,6 @@ Rectangle {
       source: "/var/lib/AccountsService/icons/avafrog"
       fillMode: Image.PreserveAspectFit
     }
-    ButtonArea {}
+    ButtonArea { onClicked: popup.implicitWidth = 616 }
   }
 }
