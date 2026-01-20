@@ -6,6 +6,7 @@ import QtQuick.Layouts
 import QtQuick.Controls
 
 import "bar"
+import "notifications"
 
 ShellRoot {
   FileView {
@@ -36,4 +37,5 @@ ShellRoot {
     sourceComponent: settings.floating ? null : border
   }
   Bar {}
+  NotifPanel {}
 }

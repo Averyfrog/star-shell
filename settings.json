@@ -1,10 +1,10 @@
 {
-  "floating": true,
+  "floating": false,
   "bar": {
     "side": 1
   },
   "battery": {
-    "showPercentage": true
+    "showPercentage": false
   },
   "workspaces": {
     "count": 6,

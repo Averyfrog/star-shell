@@ -2,6 +2,7 @@ import Quickshell
 import Quickshell.Services.Mpris
 import QtQuick
 import QtQuick.Layouts
+import QtQuick.Controls
 import '../components'
 
       StyledRect {
@@ -115,7 +116,7 @@ import '../components'
                       }
                       Label {
                           id: trackArtist
-                        width: Math.min(parent.width/2 - 32, implicitWidth)
+                        width: Math.min(parent.width/1.5 - 32, implicitWidth)
                         opacity: 0.9
                         text: activePlayer == null ? "Nobody" : activePlayer.trackArtist
                         color: theme.base05
@@ -142,8 +143,188 @@ import '../components'
               Rectangle {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                color: theme.base02
+                color: theme.base00
                 radius: 8
+                Slider {
+                  id: control
+                  anchors {
+                    top: parent.top
+                    topMargin: 16
+                    horizontalCenter: parent.horizontalCenter
+                  }
+                  width: parent.width - 64
+                  height: 8
+
+                  value: pressed ? null : activePlayer.position
+                  to: activePlayer.length
+
+                  background: Rectangle {
+                    x: control.leftPadding
+                    y: control.topPadding + control.availableHeight / 2 - height / 2
+                    implicitWidth: 200
+                    implicitHeight: 8
+                    height: implicitHeight
+                    radius: 8
+                    color: theme.base02
+
+                    Rectangle {
+                      width: control.visualPosition * parent.width
+                      height: parent.height
+                      color: theme.accent
+                      radius: 8
+                    }
+                  }
+
+                  handle: Rectangle {
+                    x: control.leftPadding + control.visualPosition * (control.availableWidth - width)
+                    y: control.topPadding + control.availableHeight / 2 - height / 2
+                    implicitWidth: 16
+                    implicitHeight: 26
+                    radius: 8
+                    color: control.pressed ? theme.accent : theme.base05
+                    border.width: 4
+                    border.color: theme.base00
+                  }
+
+                  FrameAnimation {
+                    // only emit the signal when the position is actually changing.
+                    running: activePlayer.playbackState == MprisPlaybackState.Playing
+                    // emit the positionChanged signal every frame.
+                    onTriggered: activePlayer.positionChanged()
+                  }
+                }
+                RowLayout {
+                  anchors {
+                    horizontalCenter: parent.horizontalCenter
+                    bottom: parent.bottom
+                    bottomMargin: 8
+                  }
+                  Rectangle {
+                    height: 24
+                    width: 60
+                    color: 'transparent'
+                    Label {
+                      anchors.centerIn: parent
+                      text: sToTime(activePlayer.position.toFixed(0))
+                      opacity: 0.7
+
+                      function sToTime(s) {
+                        var secs = s % 60;
+                        s = (s - secs) / 60;
+                        var mins = s % 60;
+                        var hrs = (s - mins) / 60;
+
+                        return ("0" + mins).slice(-2) + ":" + ("0" + secs).slice(-2);
+                      }
+                    }
+                  }
+                  StyledRect {
+                    anchors.centerIn: null
+                    color: theme.base02
+                    width: 32
+                    height: 24
+  
+                    bottomRightRadius: 4
+                    topRightRadius: 4
+
+                    ButtonArea {
+                      onClicked: activePlayer.previous()
+                    }
+                    GoogleIcon {
+                      anchors.centerIn: parent
+                      text: 'skip_previous'
+                      color: theme.accent
+                    }
+                  }
+                  StyledRect {
+                    anchors.centerIn: null
+                    color: theme.base02
+                    width: 32
+                    height: 24
+
+                    radius: 4
+
+                    ButtonArea {
+                      onClicked: activePlayer.seek(-10)
+                    }
+                    GoogleIcon {
+                      anchors.centerIn: parent
+                      text: 'replay_10'
+                      color: theme.accent
+                    }
+                  }
+                  StyledRect {
+                    anchors.centerIn: null
+                    color: theme.accent
+                    width: 32
+                    height: 32
+
+                    ButtonArea {
+                      defColor: theme.accent
+                      onClicked: activePlayer.togglePlaying()
+                    }
+                    GoogleIcon {
+                      anchors.centerIn: parent
+                      text: activePlayer != null && activePlayer.isPlaying ? "pause_circle" : "play_circle"
+                      color: theme.base00
+                      font.pixelSize: 20
+                    }
+                  }
+                  StyledRect {
+                    anchors.centerIn: null
+                    color: theme.base02
+                    width: 32
+                    height: 24
+
+                    radius: 4
+
+                    ButtonArea {
+                      onClicked: activePlayer.seek(10)
+                    }
+                    GoogleIcon {
+                      anchors.centerIn: parent
+                      text: 'forward_10'
+                      color: theme.accent
+                    }
+                  }
+                  StyledRect {
+                    anchors.centerIn: null
+                    color: theme.base02
+                    width: 32
+                    height: 24
+  
+                    bottomLeftRadius: 4
+                    topLeftRadius: 4
+
+                    ButtonArea {
+                      onClicked: activePlayer.next()
+                    }
+                    GoogleIcon {
+                      anchors.centerIn: parent
+                      text: 'skip_next'
+                      color: theme.accent
+                    }
+                  }
+                  Rectangle {
+                    height: 24
+                    width: 60
+                    color: 'transparent'
+                    Label {
+                      anchors.centerIn: parent
+                      text: sToTime(activePlayer.length.toFixed(0))
+                      opacity: 0.7
+
+                      function sToTime(s) {
+                        var secs = s % 60;
+                        s = (s - secs) / 60;
+                        var mins = s % 60;
+                        var hrs = (s - mins) / 60;
+
+                        return ("0" + mins).slice(-2) + ":" + ("0" + secs).slice(-2);
+                      }
+                    }
+                  }
+                }
               }
           }
         }

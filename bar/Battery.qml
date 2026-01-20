@@ -48,7 +48,7 @@ Rectangle {
       }
 
       Label {
-text: settings.battery.showPercentage ?(UPower.displayDevice.percentage * 100).toFixed(0) + "%" : ""
+        text: settings.battery.showPercentage ?(UPower.displayDevice.percentage * 100).toFixed(0) + "%" : ""
         color: bat.batteryColor
       }
     }
@@ -157,7 +157,7 @@ text: settings.battery.showPercentage ?(UPower.displayDevice.percentage * 100).t
                 topMargin: 4
                 horizontalCenter: parent.horizontalCenter
               }
-              text: UPower.displayDevice.state == UPowerDeviceState.Discharging ? "Time until empty:" : "Time until full:"
+              text: UPower.displayDevice.state == UPowerDeviceState.Discharging ? "Time until death:" : "Time until full:"
               opacity: 0.7
               font.pixelSize: 12
             }
