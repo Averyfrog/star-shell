@@ -1,7 +1,7 @@
 {
   "floating": false,
   "bar": {
-    "side": 1
+    "side": 4
   },
   "battery": {
     "showPercentage": false

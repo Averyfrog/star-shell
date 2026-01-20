@@ -38,7 +38,13 @@ Rectangle {
 
       ButtonArea {
         onClicked: { 
-          popup.visible = !popup.visible
+          popup.toggle()
+        }
+        Timer {
+          id: popupCloser
+          interval: 100
+          running: false
+          onTriggered: popup.visible = false
         }
       }
 
@@ -94,9 +100,6 @@ Rectangle {
     implicitWidth: 616
     implicitHeight: 200
     
-    property bool show: true
-    visible: false
-
     DropdownRect {
       id: dropdown
 

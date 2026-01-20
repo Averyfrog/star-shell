@@ -54,7 +54,7 @@ Rectangle {
     }
     
     ButtonArea {
-      onClicked: popup.visible = !popup.visible
+      onClicked: popup.toggle()
     }
   }
 

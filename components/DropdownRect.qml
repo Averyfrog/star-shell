@@ -7,7 +7,7 @@ StyledRect {
   width: parent.width - 24
   height: parent.height
   x: 12
-  y: popup.visible ? 0 : (settings.bar.side == 1 ? -height : height)
+  y: popup.show ? 0 : (settings.bar.side == 1 ? -height : height)
   Behavior on y {
     NumberAnimation {
       duration: 250
