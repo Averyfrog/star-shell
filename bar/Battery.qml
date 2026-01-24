@@ -89,19 +89,25 @@ Rectangle {
               top: parent.top
               topMargin: 16
               left: parent.left
-              leftMargin: 16
+              leftMargin: 8
             }
           }
-          Label {
-            text: (UPower.displayDevice.percentage * 100).toFixed(0)
-            color: bat.batteryColor
-            font.pixelSize: 20
+          Rectangle {
+            width: 64
+            height: 64
+            color: 'transparent'
             anchors {
               centerIn: null
               top: parent.top
-              topMargin: 34
+              topMargin: 16
               left: parent.left
-              leftMargin: 34
+              leftMargin: 8
+            }
+            Label {
+              text: (UPower.displayDevice.percentage * 100).toFixed(0)
+              color: bat.batteryColor
+              font.pixelSize: 20
+              anchors.centerIn: parent
             }
           }
           CircularProgress {
@@ -157,7 +163,7 @@ Rectangle {
                 topMargin: 4
                 horizontalCenter: parent.horizontalCenter
               }
-              text: UPower.displayDevice.state == UPowerDeviceState.Discharging ? "Time until death:" : "Time until full:"
+              text: UPower.displayDevice.state == UPowerDeviceState.Discharging ? "Time until empty:" : "Time until full:"
               opacity: 0.7
               font.pixelSize: 12
             }

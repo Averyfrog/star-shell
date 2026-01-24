@@ -19,6 +19,14 @@ Rectangle {
 
   color: 'transparent'
 
+  Component.onCompleted: {
+    notif.closed.connect(close)
+  }
+
+  function close() {
+    NotifServer.remove(notif.id)
+  }
+
   StyledRect {
     id: rect
     anchors.centerIn: null
@@ -38,7 +46,7 @@ Rectangle {
     Timer {
       id: notifTimeout
       interval: 10
-      running: !modelData.pinned
+      running: !modelData.pinned && !mouseArea.containsMouse
       repeat: true
       onTriggered: {
         if (modelData.timeLeft > 0) {
@@ -46,7 +54,6 @@ Rectangle {
         }
         else if (!modelData.pinned) {
           notif.dismiss()
-          NotifServer.remove(notif.id)
         }
       }
     }
@@ -75,19 +82,27 @@ Rectangle {
       onReleased: {
         if (rect.x > rect.width/2) {
           notif.expire()
-          NotifServer.remove(notif.id)
         }
       }
+    }
+
+    Image {
+      width: 64
+      height: width
+      anchors.left: parent.left
+      anchors.leftMargin: 8
+      anchors.verticalCenter: parent.verticalCenter
+      source: notif.image != "" ? notif.image : notif.appIcon
     }
     
     Rectangle {
       color: 'transparent'
       height: parent.height
-      width: parent.width - (notif.image != "" ? 128 : 0)
+      width: parent.width - (notif.image != "" || notif.appIcon != "" ? 76 : 0)
       anchors.right: parent.right
-
+      
       Label {
-        width: 200
+        width: parent.width - 96
         anchors {
           top: parent.top
           topMargin: 8
@@ -132,7 +147,6 @@ Rectangle {
             defColor: theme.base08
             onClicked: {
               notif.dismiss()
-              NotifServer.remove(notif.id)
             }
           }
           GoogleIcon {
@@ -156,7 +170,6 @@ Rectangle {
           ButtonArea {
             defColor: theme.base0A
             onClicked: {
-              NotifServer.remove(notif.id)
               notif.dismiss()
             }
           }

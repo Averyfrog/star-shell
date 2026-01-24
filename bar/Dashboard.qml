@@ -20,7 +20,7 @@ Rectangle {
       width: parent.width
       height: parent.height
       anchors.centerIn: parent
-      source: "/var/lib/AccountsService/icons/avafrog"
+      source: "/home/avafrog/Pictures/NixOS.svg"
       fillMode: Image.PreserveAspectFit
     }
     ButtonArea { onClicked: popup.implicitWidth = 616 }

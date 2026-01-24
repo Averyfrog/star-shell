@@ -11,7 +11,7 @@ Rectangle {
   color: 'transparent'
 
   Layout.fillHeight: true
-  width: 76
+  implicitWidth: clockRow.width + 24
 
   StyledRect {
     

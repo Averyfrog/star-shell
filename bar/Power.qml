@@ -12,9 +12,9 @@ Rectangle {
   StyledRect {
     GoogleIcon {
       anchors.centerIn: parent
-      text: 'format_paint'
-      color: theme.accent
-    }
+      text: 'power_settings_new'
+      color: theme.base08
+   }
     ButtonArea {
       onClicked: popup.toggle()
     }
@@ -22,16 +22,14 @@ Rectangle {
   Dropdown {
     id: popup
     anchor.item: root
-    implicitHeight: 256
-    implicitWidth: 256
-
+    implicitWidth: 52 + 12 + 16
+    implicitHeight: 128
+    
     DropdownRect {
+      id: dropdown
 
-      StyledRect {
-        color: theme.base01
-        edgeGap: 16
-        ThemeDropdown {}
-      } 
+      PowerDropdown {}
+
     }
   }
 }

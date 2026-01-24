@@ -10,4 +10,9 @@ Text {
     bold: true
   }
   //clip: true
+  Behavior on color {
+    ColorAnimation {
+      duration: 250 / settings.animationSpeed
+    }
+  }
 }

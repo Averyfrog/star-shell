@@ -12,7 +12,13 @@ Text {
     styleName: "Normal"
   }
         
-    color: theme.base05
+  color: theme.base05
 
-    text: "add_circle"
+  text: "add_circle"
+
+  Behavior on color {
+    ColorAnimation {
+      duration: 250 / settings.animationSpeed
+    }
   }
+}

@@ -1,12 +1,7 @@
 import Quickshell
-import Quickshell.Io
-import Quickshell.Widgets
-import Quickshell.Hyprland
 import QtQuick
 import QtQuick.Layouts
-import QtQuick.Controls
 import QtQuick.Effects
-import '../components'
 
 Scope {
   property string time
@@ -55,6 +50,7 @@ Scope {
 
           Rectangle {
             anchors.left: parent.left
+            anchors.leftMargin: settings.floating ? 0 : 16
 
             color: theme.base01
             width: rowLeft.width + 8
@@ -67,7 +63,8 @@ Scope {
               height: parent.height
 
               Time {}
-              Workspaces {}
+              Media {}
+              
             }
           }
 
@@ -85,13 +82,14 @@ Scope {
               spacing: 2
               height: parent.height
 
-              Media {}
-              //ThemeButton {}
+              Workspaces {}
+
             }
           }
 
           Rectangle {
             anchors.right: parent.right
+            anchors.rightMargin: settings.floating ? 0 : 16
 
             color: theme.base01
             width: rowRight.width + 8
@@ -104,9 +102,11 @@ Scope {
               spacing: 2
               height: parent.height
 
-              SysMonitor {}
+              //ThemeButton {}
+              Temp {}
               Battery {}
-              //Dashboard {}
+              //Power {}
+
             }
           }
           /*

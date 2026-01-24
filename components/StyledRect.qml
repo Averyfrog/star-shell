@@ -15,7 +15,12 @@ Rectangle {
     width: parent.width - edgeGap
     Behavior on width {
       NumberAnimation {
-        duration: 100
+        duration: 100 / settings.animationSpeed
+      }
+    }
+    Behavior on color {
+      ColorAnimation {
+        duration: 100 / settings.animationSpeed
       }
     }
     anchors.centerIn: parent

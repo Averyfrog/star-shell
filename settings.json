@@ -1,7 +1,18 @@
 {
+  "animationSpeed": 0.6,
   "floating": false,
   "bar": {
-    "side": 4
+    "side": 4, 
+    "leftModules": [
+      "time",
+      "workspaces"
+    ],
+    "centerModules": [
+      "Media"
+    ],
+    "rightModules": [
+      "Time"
+    ]
   },
   "battery": {
     "showPercentage": false
@@ -20,7 +31,10 @@
       "chess_king"
     ]
   },
-  "time":  {
-    "format":"hh:mm"
-  }
+  "time": {
+    "format":"hh:mm AP"
+  },
+  "media": {
+    "design": 2
+  } 
 }

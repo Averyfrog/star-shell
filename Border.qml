@@ -12,7 +12,7 @@ Variants {
     
     // My FNQRT Border Shape
     property color barsColor: theme.base00
-    property real borderWidth: 16
+    property real borderWidth: 20
     property real cornerRadius: 20
     
     PanelWindow {
@@ -159,7 +159,7 @@ Variants {
       }
     }
     
-    // Bottom-left corner -- quick note guys this controls the bottom right corner had to fix the margin issue)
+    // Bottom-right corner
     PanelWindow {
       id: bottomRightCorner
       screen: scope.modelData
