@@ -48,6 +48,7 @@ Rectangle {
       }
 
       Label {
+        anchors.verticalCenter: parent.verticalCenter
         text: settings.battery.showPercentage ?(UPower.displayDevice.percentage * 100).toFixed(0) + "%" : ""
         color: bat.batteryColor
       }
@@ -61,7 +62,7 @@ Rectangle {
   Dropdown {
     id: popup
     anchor.item: root
-    implicitHeight: 176 + bluetoothDevices.height + (bluetoothDevices.height > 10 ? 16 : 0)
+    implicitHeight: 168 + bluetoothDevices.height + (bluetoothDevices.height > 10 ? 16 : 0)
 
     DropdownRect {
 

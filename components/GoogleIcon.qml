@@ -6,7 +6,7 @@ Text {
   anchors.verticalCenter: parent.verticalCenter
   font {
     pixelSize: 16;
-    bold: true
+    bold: false
     family: "Material Symbols Rounded"
     weight: 700
     styleName: "Normal"

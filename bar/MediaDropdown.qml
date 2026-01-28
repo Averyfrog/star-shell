@@ -36,10 +36,10 @@ StyledRect {
       }
 
       GoogleIcon {
-        text: "art_track"
-        color: theme.base00
+        text: "album"
+        color: '#363841'
         anchors.centerIn: parent
-        font { pixelSize: 80 }
+        font { pixelSize: 120 }
       }
       
       ClippingWrapperRectangle {

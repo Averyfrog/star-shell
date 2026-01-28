@@ -22,7 +22,7 @@ Rectangle {
   Dropdown {
     id: popup
     anchor.item: root
-    implicitHeight: 256
+    implicitHeight: 400
     implicitWidth: 256
 
     DropdownRect {

@@ -82,6 +82,8 @@ StyledRect {
     anchors.bottom: parent.bottom
     anchors.bottomMargin: Math.min(dropdown.y, parent.height - 32)
     preferredRendererType: Shape.CurveRenderer
+
+    opacity: settings.floating == false && settings.bar.side == 4
     
     ShapePath {
       strokeWidth: 0
@@ -104,6 +106,8 @@ StyledRect {
     anchors.bottom: parent.bottom
     anchors.bottomMargin: Math.min(dropdown.y, parent.height - 32)
     preferredRendererType: Shape.CurveRenderer
+
+    opacity: settings.floating == false && settings.bar.side == 4
     
     ShapePath {
       strokeWidth: 0

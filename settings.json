@@ -1,8 +1,8 @@
 {
-  "animationSpeed": 0.6,
+  "animationSpeed": 0.8,
   "floating": false,
   "bar": {
-    "side": 4, 
+    "side": 4,
     "leftModules": [
       "time",
       "workspaces"
@@ -15,7 +15,7 @@
     ]
   },
   "battery": {
-    "showPercentage": false
+    "showPercentage": true
   },
   "workspaces": {
     "count": 6,
@@ -32,7 +32,7 @@
     ]
   },
   "time": {
-    "format":"hh:mm AP"
+    "format":"hh:mm"
   },
   "media": {
     "design": 2

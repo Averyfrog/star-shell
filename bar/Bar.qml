@@ -102,7 +102,7 @@ Scope {
               spacing: 2
               height: parent.height
 
-              //ThemeButton {}
+              ThemeButton {}
               Temp {}
               Battery {}
               //Power {}

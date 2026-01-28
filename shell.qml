@@ -4,6 +4,7 @@ import QtQuick
 
 import "bar"
 import "notifications"
+import "settingsMenu"
 
 ShellRoot {
   FileView {
@@ -35,4 +36,5 @@ ShellRoot {
   }
   Bar {}
   NotifPanel {}
+  //Settings {}
 }
